@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>{{ agenda.url_name }}</title>
+</head>
+<body>
+{% include 'navbar.html' %}
+
+{% set max_events_to_show = 20 %}
+{% set show_more_increment = 20 %}
+{% set start_index = 0 %}
+
+{% set end_index = start_index + max_events_to_show if (start_index + max_events_to_show) < events|length else events|length %}
+
+<h1>{{ agenda.title }}</h1>
+  <div class="event">
+      <ul>
+      {% for i in range(start_index, end_index) %}
+      {% set event = events[i] %}
+        <li><a href="{{ url_for('routes.event_detail', event_id=event.id) }}">{{ event.event_date }} {{ event.name }} {{ event.location }}</a>
+        {% if 'username' in session %}
+          <a href="{{ url_for('routes.update_event_form', event_id=event.id, agenda_id=agenda_id) }}" class="btn btn-primary">Update</a>
+          <a href="{{ url_for('routes.delete_event', event_id=event.id) }}" class="btn btn-danger">Delete</a>
+        {% endif %}
+        </li>
+      {% endfor %}
+      {% if start_index > 0 %}
+      <a class="btn btn-warning" href="{{ url_for('routes.show_more_events', num_to_show=max_events_to_show + show_more_increment) }}">Toon meer</a></br>
+      {% endif %}
+
+      {% if (start_index + max_events_to_show) < events|length %}
+        <br><a class="btn btn-info" href="/agenda">Toon minder</a></br>
+      {% endif %}
+
+        {% if 'username' in session %}
+        </br>
+          <a href="{{ url_for('routes.event_create', agenda_id=agenda_id) }}" class="btn btn-success">Nieuwe Evenement Plannen</a>
+        {% endif %}
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.event {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+}
+
+.default {
+    background-color: gray;
+    border-radius: 4px;
+}
+
+.sheet1 {
+    background-color: red;
+    border-radius: 4px;
+}
+
+.sheet2 {
+    background-color: green;
+    border-radius: 4px;
+}
+
+.sheet3 {
+    background-color: blue;
+    border-radius: 4px;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+      }
+    }
+
+    .agenda-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .agenda-card {
+      max-width: 30rem;
+      margin: 10px;
+      padding: 30px;
+    }
+  </style>
+  {% include 'navbar.html' %}
+</head>
+<body>
+
+<h1>Agenda's</h1>
+
+<div class="agenda-container">
+  {% if agendas %}
+    {% for agenda in agendas %}
+      <div class="{{ agenda.external_stylesheet }} agenda-card">
+        <div class="panel-heading">
+          <div class="panel-title">{{ agenda.title }}</div>
+        </div>
+        <div class="panel-body">{{ agenda.description }}</div>
+        <a class="btn btn-primary" href="{{ url_for('routes.agenda_naam', url_name=agenda.url_name) }}">Meer lezen</a>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>Geen agenda's gevonden.</p>
+  {% endif %}
+
+  <footer class="container-fluid text-center">
+    <p>1077402@hr.nl | Anas Amhaou | Dit keer voldoende </p>
+  </footer>
+</body>
+</html>

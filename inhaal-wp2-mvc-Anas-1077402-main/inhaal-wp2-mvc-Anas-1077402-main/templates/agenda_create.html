@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <title>Nieuwe Agenda</title>
+  {% include 'navbar.html' %}
+</head>
+<body>
+
+<div class="container">
+  <h2>Nieuwe Agenda</h2>
+  <form action="/opslaan_agenda" method="post">
+    <div class="form-group">
+      <label for="titel">Titel:</label>
+      <input type="text" class="form-control" id="titel" name="titel" required>
+    </div>
+    <div class="form-group">
+      <label for="url_naam">Naam voor URL:</label>
+      <input type="text" class="form-control" id="url_naam" name="url_naam" required>
+    </div>
+    <div class="form-group">
+      <label for="stylesheet_select">Selecteer Style Sheet:</label>
+      <select class="form-control" id="stylesheet_select" name="stylesheet_select">
+        <option value="default">Default</option>
+        <option value="sheet1">Sheet 1</option>
+        <option value="sheet2">Sheet 2</option>
+        <option value="sheet3">Sheet 3</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Opslaan</button>
+  <a href="{{ url_for('routes.index') }}" class="btn btn-danger">Terug</a>
+  </form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

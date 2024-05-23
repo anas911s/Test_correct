@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Beheerderpaneel</title>
+    {% include 'navbar.html' %}
+</head>
+<body>
+
+<div class="container">
+    <h2>Beheerderpaneel</h2>
+
+    <form method="post" action="{{ url_for('routes.admin_panel') }}">
+        <h3>Nieuwe gebruiker toevoegen</h3>
+        <label for="new_username">Gebruikersnaam:</label>
+        <input type="text" id="new_username" name="new_username" required>
+
+        <label for="new_password">Wachtwoord:</label>
+        <input type="password" id="new_password" name="new_password" required>
+
+        <label for="is_admin">Is beheerder?</label>
+        <input type="checkbox" id="is_admin" name="is_admin" value="1">
+
+        <button type="submit" class="btn btn-primary">Toevoegen</button>
+    </form>
+<br>
+    <h3>Bestaande gebruikers</h3>
+    <ul>
+        {% for user in users %} <br>
+            <li>{{ user.id }} {{ user.username }}
+                <label> Role Status: </label>
+                {{ user.is_admin }} <a href="{{ url_for('routes.delete_user', user_id=user.id) }}" class="btn btn-danger">Verwijderen</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
